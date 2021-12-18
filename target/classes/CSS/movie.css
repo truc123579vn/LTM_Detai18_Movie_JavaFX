@@ -1,0 +1,10 @@
+.button
+{
+    -fx-background-color: white;
+    -fx-border-color: blue;
+    -fx-wrap-text: true;
+}
+.button:pressed
+{
+    -fx-background-color: lightBlue;
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchReview" prefHeight="200.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="lblReviewTitle" layoutX="10.0" layoutY="14.0" maxWidth="351.0" minWidth="200.0" prefHeight="20.0" prefWidth="331.0" text="Title Reviews" AnchorPane.leftAnchor="5.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txtAreaReviewContent" layoutX="10.0" layoutY="49.0" prefHeight="103.0" prefWidth="414.0" AnchorPane.leftAnchor="5.0" />
+      <Line endX="309.0" layoutX="105.5" layoutY="192.0" startX="-100.0" AnchorPane.leftAnchor="5.0" />
+      <Label fx:id="lblReviewAuthor" layoutX="5.0" layoutY="162.0" maxWidth="250.0" prefWidth="250.0" text="author" AnchorPane.leftAnchor="5.0" />
+   </children>
+</AnchorPane>
