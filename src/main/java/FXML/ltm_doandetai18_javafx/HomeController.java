@@ -11,11 +11,16 @@ import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,8 +51,18 @@ public class HomeController implements Initializable {
     @FXML
     private Button btnSearch;
 
+    @FXML
+    private ImageView imgUploadFile;
+
+    @FXML
+    private Button btnUploadImage;
+
+    @FXML
+    private Button btnNavigateImageControl;
+
     private ObservableList<MovieModel> observableListMovie;
 
+    private Stage stage;
 
     private Parent root;
     final WebView browser = new WebView();
@@ -131,6 +146,34 @@ public class HomeController implements Initializable {
             Start.setRoot("WatchMovieDetail");
 
         }
+    }
+
+    public void ClickToUploadImage(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.setInitialDirectory(new File("./src/main/resources/image"));
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        File file = fileChooser.showOpenDialog(stage);
+
+        if (file !=null)
+        {
+            Image image = new Image(file.toURI().toString(),361,175,false,true);
+            imgUploadFile.setImage(image);
+           // String imgDirectory=file.getAbsolutePath();
+            System.out.println(file.getAbsolutePath());
+            System.out.println(file.toURI().toString());
+            System.out.println(file.getName());
+        }
+        else System.out.println("file is not invalid");
+        // return directoryFile;
+    }
+
+    public void ClickToNavigateImageControl(ActionEvent event) throws IOException {
+        Start.setRoot("WatchInfoAndCustomizeImage");
     }
 
 //    public void WatchTrailer()

@@ -82,8 +82,7 @@ public class LoginController implements Initializable {
 
             vBox.getChildren().add(img[i]);
             vBox.getChildren().add(lb[i]);
-            vBox.getChildren().add(btn[i]);
-        }
+            vBox.getChildren().add(btn[i]);        }
         scrollPanel.setContent(vBox);
     }
 
