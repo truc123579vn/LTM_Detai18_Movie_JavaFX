@@ -61,7 +61,7 @@
                         </ListView>
                      </children>
                   </Group>
-                  <Group fx:id="grpImage" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                  <Group fx:id="grpImage" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                      <children>
                         <ImageView fx:id="imgUploadFile" fitHeight="175.0" fitWidth="361.0" layoutX="172.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" />
                         <Button fx:id="btnUploadImage" layoutX="354.0" layoutY="9.0" mnemonicParsing="false" onAction="#ClickToUploadImage" prefHeight="40.0" prefWidth="140.0" text="Upload Image" />
@@ -70,7 +70,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnNavigateImageControl" layoutX="552.0" layoutY="134.0" mnemonicParsing="false" onAction="#ClickToNavigateImageControl" prefHeight="57.0" prefWidth="76.0" text="Chỉnh ảnh" />
+                        <Button fx:id="btnNavigateImageControl" layoutX="552.0" layoutY="134.0" mnemonicParsing="false" onAction="#ClickToNavigateImageControl" prefHeight="57.0" prefWidth="55.0" text="Xem chi tiết" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </Group>
                </children>
@@ -80,7 +80,6 @@
             </AnchorPane>
          </children>
       </VBox>
-      <Text fx:id="lblTest" layoutX="258.0" layoutY="564.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
     </children>
 
 </AnchorPane>

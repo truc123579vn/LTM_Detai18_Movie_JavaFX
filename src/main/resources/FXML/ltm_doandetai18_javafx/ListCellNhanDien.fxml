@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+
+
+<AnchorPane fx:id="anchNhanDien" prefHeight="50.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="lblImageObject" layoutX="32.0" layoutY="17.0" prefHeight="17.0" prefWidth="130.0" text="Object" />
+      <Label fx:id="lblImagePercent" layoutX="244.0" layoutY="17.0" prefHeight="17.0" prefWidth="130.0" text="Percent" />
+      <Line endX="31.0" endY="7.2928924560546875" layoutX="173.0" layoutY="31.0" startX="31.0" startY="-18.5" />
+      <Line endX="227.0" layoutX="133.0" layoutY="50.0" startX="-113.0" />
+   </children>
+</AnchorPane>
