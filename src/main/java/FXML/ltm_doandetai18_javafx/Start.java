@@ -18,7 +18,7 @@ public class Start extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Home"));
+        scene = new Scene(loadFXML("WatchInfoAndCustomizeImage"));
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle("Bao cao de tai 18");

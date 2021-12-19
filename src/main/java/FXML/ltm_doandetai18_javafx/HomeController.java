@@ -71,8 +71,9 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         //
+        btnNavigateImageControl.setVisible(false);
+
 //        //add some Students
 //        movieObservableList.addAll(
 //                new MovieModel("John Doe"),
@@ -163,6 +164,7 @@ public class HomeController implements Initializable {
         {
             Image image = new Image(file.toURI().toString(),361,175,false,true);
             imgUploadFile.setImage(image);
+            btnNavigateImageControl.setVisible(true);
            // String imgDirectory=file.getAbsolutePath();
             System.out.println(file.getAbsolutePath());
             System.out.println(file.toURI().toString());
