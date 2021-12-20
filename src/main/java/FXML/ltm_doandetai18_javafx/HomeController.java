@@ -1,6 +1,8 @@
 package FXML.ltm_doandetai18_javafx;
 
-import Model.MovieModel;
+import DTO.MovieModel;
+import DTO.MovieSearchResult_DTO;
+import Support.SupportTool;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +25,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -123,10 +126,14 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    void ClickToShowResulstSearch(ActionEvent event) {
+    void ClickToShowResulstSearch(ActionEvent event) throws IOException, ClassNotFoundException {
         String searchName= txtMovieName.getText();
         observableListMovie = FXCollections.observableArrayList();
-        listViewMovies.setItems( ShowListMovieBySearchMovie(searchName));
+        SupportTool.getOutputClient().writeObject("1-"+searchName);
+        Object output = SupportTool.getInputClient().readObject();
+
+        List<MovieSearchResult_DTO> list = (List<MovieSearchResult_DTO>) output;
+        listViewMovies.setItems( SupportTool.convertListDTOtoListMovieModel(list) );
         listViewMovies.setCellFactory(e -> new MovieListViewCell());
     }
 

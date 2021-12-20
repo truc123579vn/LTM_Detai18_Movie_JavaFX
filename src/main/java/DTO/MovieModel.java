@@ -1,6 +1,8 @@
-package Model;
+package DTO;
 
-public class MovieModel {
+import java.io.Serializable;
+
+public class MovieModel implements Serializable {
     private String title,imageUrl;
 
     public MovieModel(String title, String imageUrl) {

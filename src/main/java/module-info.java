@@ -12,6 +12,6 @@ module com.example.ltm_doandetai18_javafx {
 
     opens FXML.ltm_doandetai18_javafx to javafx.fxml;
     exports FXML.ltm_doandetai18_javafx;
-    exports Model;
-    opens Model to javafx.fxml;
+    exports DTO;
+    opens DTO to javafx.fxml;
 }

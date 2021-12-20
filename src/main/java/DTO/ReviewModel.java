@@ -1,4 +1,4 @@
-package Model;
+package DTO;
 
 public class ReviewModel {
     String author, content, title;
