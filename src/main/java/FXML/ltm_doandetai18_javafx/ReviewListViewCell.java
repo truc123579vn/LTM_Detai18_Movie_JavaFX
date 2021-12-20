@@ -1,6 +1,6 @@
 package FXML.ltm_doandetai18_javafx;
 
-import Model.ReviewModel;
+import DTO.ReviewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
