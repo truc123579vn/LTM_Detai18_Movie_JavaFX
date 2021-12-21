@@ -7,10 +7,15 @@
 
 <AnchorPane fx:id="anchPane" prefHeight="150.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="label1" layoutX="272.0" layoutY="40.0" prefHeight="70.0" prefWidth="180.0" text="Movie: " AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="40.0">
+      <Label fx:id="label1" layoutX="142.0" layoutY="17.0" prefHeight="51.0" prefWidth="335.0" text="Movie: " wrapText="true" AnchorPane.bottomAnchor="82.0" AnchorPane.topAnchor="17.0">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="16.0" />
          </font></Label>
-      <ImageView fx:id="imgMovie" fitHeight="100.0" fitWidth="200.0" layoutX="30.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.topAnchor="25.0" />
+      <ImageView fx:id="imgMovie" fitHeight="100.0" fitWidth="135.0" layoutX="30.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.topAnchor="25.0" />
+      <Label fx:id="lblRating" layoutX="140.0" layoutY="80.0" prefHeight="43.0" prefWidth="270.0" text="Điểm: " wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

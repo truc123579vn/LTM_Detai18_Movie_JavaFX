@@ -1,6 +1,6 @@
 package FXML.ltm_doandetai18_javafx;
 
-import DTO.ReviewModel;
+import DTO.Review_DTO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class ReviewListViewCell  extends ListCell<ReviewModel> {
+public class ReviewListViewCell  extends ListCell<Review_DTO> {
 
         @FXML
         private Label lblReviewAuthor;
@@ -26,7 +26,7 @@ public class ReviewListViewCell  extends ListCell<ReviewModel> {
 
 
         @Override
-        protected void updateItem(ReviewModel reviewModel, boolean empty) {
+        protected void updateItem(Review_DTO reviewModel, boolean empty) {
                super.updateItem(reviewModel, empty);
 
                 if(empty || reviewModel == null) {
@@ -48,8 +48,9 @@ public class ReviewListViewCell  extends ListCell<ReviewModel> {
 
                         }
 
-                        lblReviewAuthor.setText(String.valueOf(reviewModel.getAuthor()));
+                        lblReviewAuthor.setText(String.valueOf(reviewModel.getUsername()));
                         lblReviewTitle.setText(String.valueOf(reviewModel.getTitle()));
+                        txtAreaReviewContent.setWrapText(true);
                         txtAreaReviewContent.setText(String.valueOf(reviewModel.getContent()));
 
 
