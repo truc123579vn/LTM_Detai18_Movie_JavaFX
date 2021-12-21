@@ -1,7 +1,7 @@
 package FXML.ltm_doandetai18_javafx;
 
-import DTO.MovieModel;
 import DTO.MovieSearchResult_DTO;
+import DTO.Movie_DTO;
 import Support.SupportTool;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
     public static String inputMovie;
     @FXML
-    private ListView<MovieModel> listViewMovies;
+    private ListView<MovieSearchResult_DTO> listViewMovies;
     @FXML
     private Button btnCustomizeImage;
 
@@ -63,7 +63,9 @@ public class HomeController implements Initializable {
     @FXML
     private Button btnNavigateImageControl;
 
-    private ObservableList<MovieModel> observableListMovie;
+    private ObservableList<MovieSearchResult_DTO> observableListMovie;
+
+    public static Movie_DTO movie_dto;
 
     private Stage stage;
 
@@ -100,30 +102,7 @@ public class HomeController implements Initializable {
 
 
 
-    public ObservableList<MovieModel> ShowListMovieBySearchMovie(String name) {
-        switch ( name)
-        {
-            case "fairy tail" :
-            {
-                observableListMovie.addAll(
-                        new MovieModel("Fairy tail","https://m.media-amazon.com/images/M/MV5BZWM5MTE1NmItMzJiMS00MjU0LWJiZmYtMDBiYjdiNTFjODhlXkEyXkFqcGdeQXVyNjg5NDY2MDc@._V1_.jpg"),
-                        new MovieModel("Fairy tail Dragon Cry","https://m.media-amazon.com/images/M/MV5BZWM5MTE1NmItMzJiMS00MjU0LWJiZmYtMDBiYjdiNTFjODhlXkEyXkFqcGdeQXVyNjg5NDY2MDc@._V1_.jpg"),
-                        new MovieModel("Fairy tail Ova","https://m.media-amazon.com/images/M/MV5BZWM5MTE1NmItMzJiMS00MjU0LWJiZmYtMDBiYjdiNTFjODhlXkEyXkFqcGdeQXVyNjg5NDY2MDc@._V1_.jpg")
-                );
-                break;
-            }
-            case "naruto" :
-            {
-                observableListMovie.addAll(
-                        new MovieModel("Naruto","https://m.media-amazon.com/images/M/MV5BMTE5NzIwMGUtYTE1MS00MDUxLTgyZjctOWVkZDAxM2M4ZWQ4XkEyXkFqcGdeQXVyNjc2NjA5MTU@._V1_.jpg"),
-                        new MovieModel("Naruto Shippuden","https://m.media-amazon.com/images/M/MV5BMTE5NzIwMGUtYTE1MS00MDUxLTgyZjctOWVkZDAxM2M4ZWQ4XkEyXkFqcGdeQXVyNjc2NjA5MTU@._V1_.jpg"),
-                        new MovieModel("Boruto","https://m.media-amazon.com/images/M/MV5BMTE5NzIwMGUtYTE1MS00MDUxLTgyZjctOWVkZDAxM2M4ZWQ4XkEyXkFqcGdeQXVyNjc2NjA5MTU@._V1_.jpg")
-                        );
-                break;
-            }
-        }
-        return observableListMovie;
-    }
+
 
     @FXML
     void ClickToShowResulstSearch(ActionEvent event) throws IOException, ClassNotFoundException {
@@ -147,13 +126,20 @@ public class HomeController implements Initializable {
         grpMovie.setVisible(false);
     }
 
-    public void ClickItemToNavigate(MouseEvent mouseEvent) throws IOException {
+    public void ClickItemToNavigateMovie(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
         if (listViewMovies.hasProperties() == true) {
             System.out.println("clicked on " + listViewMovies.getSelectionModel().getSelectedItem());
-            inputMovie = listViewMovies.getSelectionModel().getSelectedItem().getTitle();
+           String inputMovieTitle = listViewMovies.getSelectionModel().getSelectedItem().getID();
+            //System.out.println(inputMovieTitle);
+            SupportTool.getOutputClient().writeObject("2-"+inputMovieTitle);
+            Object output = SupportTool.getInputClient().readObject();
+             movie_dto = (Movie_DTO) output;
+            System.out.println(movie_dto.getID());
+
             Start.setRoot("WatchMovieDetail");
 
         }
+
     }
 
     public void ClickToUploadImage(ActionEvent event) {

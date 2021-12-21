@@ -54,7 +54,7 @@
                         <Button fx:id="btnSearch" layoutX="467.0" layoutY="17.0" mnemonicParsing="false" onAction="#ClickToShowResulstSearch" prefHeight="25.0" prefWidth="70.0" text="Tìm kiếm" />
                         <TextField fx:id="txtMovieName" layoutX="182.0" layoutY="18.0" prefHeight="26.0" prefWidth="246.0" promptText="Nhập tên phim" />
                         <Text layoutX="29.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập tên bộ phim: " />
-                        <ListView fx:id="listViewMovies" layoutX="30.0" layoutY="73.0" onMouseClicked="#ClickItemToNavigate" prefHeight="245.0" prefWidth="507.0">
+                        <ListView fx:id="listViewMovies" layoutX="30.0" layoutY="73.0" onMouseClicked="#ClickItemToNavigateMovie" prefHeight="245.0" prefWidth="507.0">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
