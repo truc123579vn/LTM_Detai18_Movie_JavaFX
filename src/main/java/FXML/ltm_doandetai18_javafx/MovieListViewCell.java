@@ -1,6 +1,7 @@
 package FXML.ltm_doandetai18_javafx;
 
-import DTO.MovieModel;
+
+import DTO.MovieSearchResult_DTO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -11,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class MovieListViewCell extends ListCell<MovieModel> {
+public class MovieListViewCell extends ListCell<MovieSearchResult_DTO> {
     @FXML
     private AnchorPane anchPane;
 
@@ -23,7 +24,7 @@ public class MovieListViewCell extends ListCell<MovieModel> {
     private FXMLLoader mLLoader;
 
     @Override
-    protected void updateItem(MovieModel movie, boolean empty) {
+    protected void updateItem(MovieSearchResult_DTO movie, boolean empty) {
         super.updateItem(movie, empty);
 
         if(empty || movie == null) {
@@ -46,7 +47,7 @@ public class MovieListViewCell extends ListCell<MovieModel> {
             }
 
             label1.setText(String.valueOf(movie.getTitle()));
-            imgMovie.setImage(new Image( movie.getImageUrl()));
+            imgMovie.setImage(new Image( movie.getImg()));
 
             setText(null);
             setGraphic(anchPane);

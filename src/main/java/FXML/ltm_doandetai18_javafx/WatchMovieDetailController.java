@@ -1,7 +1,10 @@
 package FXML.ltm_doandetai18_javafx;
 
-import DTO.MovieModel;
+
+import DTO.Actor_DTO;
+import DTO.Movie_DTO;
 import DTO.ReviewModel;
+import Support.SupportTool;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -25,6 +29,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class WatchMovieDetailController implements Initializable {
@@ -65,6 +70,10 @@ public class WatchMovieDetailController implements Initializable {
 
     @FXML
     private ListView<ReviewModel> listviewReviews;
+    @FXML
+    private TextArea txtAreaPlot;
+    @FXML
+    private ListView<String> listviewActors;
     private ObservableList <ReviewModel> observableListReview;
     private Parent root;
     final WebView browser = new WebView();
@@ -74,35 +83,27 @@ public class WatchMovieDetailController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         grpMovie.setVisible(true);
         grpReviews.setVisible(false);
-        MovieModel movieModel = new MovieModel("Fairy tail","https://m.media-amazon.com/images/M/MV5BZWM5MTE1NmItMzJiMS00MjU0LWJiZmYtMDBiYjdiNTFjODhlXkEyXkFqcGdeQXVyNjg5NDY2MDc@._V1_.jpg");
-        lblTitleMovie.setText(movieModel.getTitle());
-        imgDetailMovie.setImage(new Image(movieModel.getImageUrl()));
-
-
-//        movieObservableList = FXCollections.observableArrayList();
-//
-//        //add some Students
-//        movieObservableList.addAll(
-//                new MovieModel("John Doe"),
-//                new MovieModel("Jane Doe"),
-//                new MovieModel("Donte Dunigan"),
-//                new MovieModel("Gavin Genna"),
-//                new MovieModel("Darin Dear"),
-//                new MovieModel("Pura Petty"),
-//                new MovieModel("Herma Hines")
-//        );
-//        listView.setItems(movieObservableList);
-//        listView.setCellFactory(movieListView -> new MovieListViewCell());
-//        listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<MovieModel>() {
-//            @Override
-//            public void changed(ObservableValue<? extends MovieModel> observableValue, MovieModel movie, MovieModel t1) {
-//               String inputMovie= listView.getSelectionModel().getSelectedItem().getTitle();
-//                lblTitleMovie.setText(inputMovie);
-//            }
-//        });
+        Movie_DTO movie_dto = HomeController.movie_dto;
+        setMovieInfo(movie_dto);
 
 
     }
+
+    public void setMovieInfo(Movie_DTO movie_dto)
+    {
+        lblTitleMovie.setText(movie_dto.getTitle());
+        imgDetailMovie.setImage(new Image(movie_dto.getImage()));
+        lblRatingMovie.setText("Điểm: " +movie_dto.getImDbRating());
+        lblTypeMovie.setText("Thể loại: " +movie_dto.getType());
+
+
+        txtAreaPlot.setText(movie_dto.getPlot());
+
+
+        List<Actor_DTO> actorDtos = movie_dto.getActors();
+        listviewActors.setItems(SupportTool.convertListDTOtoObservableList(actorDtos));
+    }
+
     @FXML
     void Back(ActionEvent event) throws IOException {
         Start.setRoot("Home");
@@ -112,10 +113,15 @@ public class WatchMovieDetailController implements Initializable {
     public void ClickToBack(MouseEvent mouseEvent) {
     }
     @FXML
-    public void ClickToShowReviews(ActionEvent event) {
+    public void ClickToShowReviews(ActionEvent event) throws IOException, ClassNotFoundException {
         grpReviews.setVisible(true);
         grpMovie.setVisible(false);
         observableListReview = FXCollections.observableArrayList();
+
+//        SupportTool.getOutputClient().writeObject("3-"+movie_dto.getID());
+//        Object output = SupportTool.getInputClient().readObject();
+//        movie_dto = (Movie_DTO) output;
+//        System.out.println(movie_dto.getID());
 
         observableListReview.addAll(
                 new ReviewModel("The best 1","Ilove see fairy tail","Truc"),
@@ -136,6 +142,8 @@ public class WatchMovieDetailController implements Initializable {
     }
 
     public void ClickToSeeTrailer(ActionEvent event) {
+
+
         String url = "https://imdb-video.media-imdb.com/vi4282494745/1434659607842-pgv4ql-1563460842767.mp4?Expires=1639646826&Signature=jB1oPXCf3LBhA124HBR2F2bHwGcjffNcWLro4P2xowldmXCMzUsweRcDi-AyrcibF7pTwKaM4G54TilumSuwe3ccJPLSgp34GHQw9etQBuhL6vgicAE8Xbu6Fogtq71As0Wy~CfuLDiDVEDw9yFHNJUWmNSafls6k7hgHdNJQb~fmkK2FWzi00yny0PN1qPYrKOlbGvLbYmmj9AsLuEfQ1Nrf1ZRJO4gyZY6ZHJpsIJ-UHNY3uzCuUbjHZHXgJAWqlIJv5NdYatehR5WBTr9~P38WYqHz37xb9XXwwIeCCYg99pGpzsFnSfDDODSdFwQu8v-mUMYiHV2nFAtUdNt0g__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA";
 
         // Tải một trang HTML từ url.

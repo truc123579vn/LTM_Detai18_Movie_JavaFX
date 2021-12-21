@@ -1,6 +1,7 @@
 package Support;
 
-import DTO.MovieModel;
+
+import DTO.Actor_DTO;
 import DTO.MovieSearchResult_DTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,14 +35,28 @@ public class SupportTool {
 
             outclient =new ObjectOutputStream(s.getOutputStream());
     }
-    public static ObservableList<MovieModel> convertListDTOtoListMovieModel(List<MovieSearchResult_DTO> list)
+    public static ObservableList<MovieSearchResult_DTO> convertListDTOtoListMovieModel(List<MovieSearchResult_DTO> list)
     {
-        ObservableList<MovieModel> movieModels = FXCollections.observableArrayList();
+        ObservableList<MovieSearchResult_DTO> movieModels = FXCollections.observableArrayList();
         for (MovieSearchResult_DTO dto: list
              ) {
-            movieModels.add(new MovieModel(dto.getTitle(), dto.getImg()));
+            movieModels.add(new MovieSearchResult_DTO(dto.getID(), dto.getTitle(), dto.getImg(), dto.getDirector(), dto.getStars(), dto.getRating()));
        //     System.out.println(dto.getImg());
         }
         return  movieModels;
+    }
+
+    public static ObservableList<String> convertListDTOtoObservableList(List<Actor_DTO> list)
+    {
+        ObservableList<String> actor_dtos = FXCollections.observableArrayList();
+
+
+
+        for (Actor_DTO dto: list
+        ) {
+            actor_dtos.add(dto.getName());
+            //     System.out.println(dto.getImg());
+        }
+        return  actor_dtos;
     }
 }
