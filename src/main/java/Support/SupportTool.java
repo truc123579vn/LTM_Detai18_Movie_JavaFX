@@ -3,6 +3,7 @@ package Support;
 
 import DTO.Actor_DTO;
 import DTO.MovieSearchResult_DTO;
+import DTO.Review_DTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -35,7 +36,7 @@ public class SupportTool {
 
             outclient =new ObjectOutputStream(s.getOutputStream());
     }
-    public static ObservableList<MovieSearchResult_DTO> convertListDTOtoListMovieModel(List<MovieSearchResult_DTO> list)
+    public static ObservableList<MovieSearchResult_DTO> convertListDTOtoObservableListMovie(List<MovieSearchResult_DTO> list)
     {
         ObservableList<MovieSearchResult_DTO> movieModels = FXCollections.observableArrayList();
         for (MovieSearchResult_DTO dto: list
@@ -46,12 +47,9 @@ public class SupportTool {
         return  movieModels;
     }
 
-    public static ObservableList<String> convertListDTOtoObservableList(List<Actor_DTO> list)
+    public static ObservableList<String> convertListDTOtoObservableListActors(List<Actor_DTO> list)
     {
         ObservableList<String> actor_dtos = FXCollections.observableArrayList();
-
-
-
         for (Actor_DTO dto: list
         ) {
             actor_dtos.add(dto.getName());
@@ -59,4 +57,17 @@ public class SupportTool {
         }
         return  actor_dtos;
     }
+
+
+    public static ObservableList<Review_DTO> convertListDTOtoObservableListReviews(List<Review_DTO> list)
+    {
+        ObservableList<Review_DTO> review_dtos = FXCollections.observableArrayList();
+        for (Review_DTO dto: list
+        ) {
+            review_dtos.add(new Review_DTO(dto.getUsername(), dto.getDate(), dto.getRate(), dto.getTitle(), dto.getContent()));
+            //     System.out.println(dto.getImg());
+        }
+        return  review_dtos;
+    }
+
 }

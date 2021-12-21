@@ -78,6 +78,7 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //
         btnNavigateImageControl.setVisible(false);
+        grpMovie.setVisible(true);
 
 //        //add some Students
 //        movieObservableList.addAll(
@@ -107,14 +108,20 @@ public class HomeController implements Initializable {
     @FXML
     void ClickToShowResulstSearch(ActionEvent event) throws IOException, ClassNotFoundException {
         String searchName= txtMovieName.getText();
-        observableListMovie = FXCollections.observableArrayList();
-        SupportTool.getOutputClient().writeObject("1-"+searchName);
-        Object output = SupportTool.getInputClient().readObject();
 
-        List<MovieSearchResult_DTO> list = (List<MovieSearchResult_DTO>) output;
-        listViewMovies.setItems( SupportTool.convertListDTOtoListMovieModel(list) );
-        listViewMovies.setCellFactory(e -> new MovieListViewCell());
-    }
+        if(searchName.isBlank())
+            Start.alertInf("Không được để trống");
+        else
+        {
+            observableListMovie = FXCollections.observableArrayList();
+            SupportTool.getOutputClient().writeObject("1-" + searchName);
+            Object output = SupportTool.getInputClient().readObject();
+
+            List<MovieSearchResult_DTO> list = (List<MovieSearchResult_DTO>) output;
+            listViewMovies.setItems(SupportTool.convertListDTOtoObservableListMovie(list));
+            listViewMovies.setCellFactory(e -> new MovieListViewCell());
+        }
+        }
 
     public void ClickToOnVisibleMovie(ActionEvent event) {
         grpMovie.setVisible(true);

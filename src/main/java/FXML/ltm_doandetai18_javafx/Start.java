@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,6 +36,13 @@ public class Start extends Application {
     static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Start.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
+    }
+    public static void alertInf(String inf) {
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setContentText(inf);
+        a.setTitle("Thông báo");
+        a.setHeaderText(null);
+        a.showAndWait();
     }
 
     public static void main(String[] args) throws IOException {

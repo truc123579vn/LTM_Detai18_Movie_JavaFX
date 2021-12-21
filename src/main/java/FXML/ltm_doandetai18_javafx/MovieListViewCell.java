@@ -23,6 +23,9 @@ public class MovieListViewCell extends ListCell<MovieSearchResult_DTO> {
 
     private FXMLLoader mLLoader;
 
+    @FXML
+    private Label lblRating;
+
     @Override
     protected void updateItem(MovieSearchResult_DTO movie, boolean empty) {
         super.updateItem(movie, empty);
@@ -47,8 +50,9 @@ public class MovieListViewCell extends ListCell<MovieSearchResult_DTO> {
             }
 
             label1.setText(String.valueOf(movie.getTitle()));
+            label1.setWrapText(true);
             imgMovie.setImage(new Image( movie.getImg()));
-
+            lblRating.setText("Điểm: " +movie.getRating());
             setText(null);
             setGraphic(anchPane);
         }
