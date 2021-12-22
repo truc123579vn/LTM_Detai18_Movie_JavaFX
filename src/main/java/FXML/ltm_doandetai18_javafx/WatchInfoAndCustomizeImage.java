@@ -1,9 +1,12 @@
 package FXML.ltm_doandetai18_javafx;
 
+import DTO.MovieSearchResult_DTO;
 import DTO.Review_DTO;
 import Support.SupportTool;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -109,10 +112,11 @@ public class WatchInfoAndCustomizeImage implements Initializable {
     @FXML
     private ToggleGroup tgConvertType;
 
-
     @FXML
     private TextField txtPercentCompress;
 
+    @FXML
+    private ListView listviewVatThe;
 
     @FXML
     private Hyperlink hyperBeforeImage;
@@ -124,6 +128,12 @@ public class WatchInfoAndCustomizeImage implements Initializable {
     private Label lblBeforSize;
 
     @FXML
+    private Label lbl_MainObject;
+
+    @FXML
+    private ListView listviewTuongTu;
+
+    @FXML
     private Hyperlink HyperAfterImage;
 
     @FXML
@@ -132,31 +142,59 @@ public class WatchInfoAndCustomizeImage implements Initializable {
     @FXML
     private ImageView imageviewBeforeCompress;
 
+
    // private String imgURL=HomeController.imageUrl;
     private String imgURL="https://resmush.it/assets/images/jpg_example_original.jpg";
+
     private List<String> infoCompress;
+
+
+    private ObservableList<String> observablelistimg;
+    private ObservableList<HashMap<String, Double>> observablerecoglist;
+
+
     @FXML
     void Back(ActionEvent event) throws IOException {
             Start.setRoot("Home");
     }
 
+
     @FXML
-    void ClickToOnVisibleAnhTuongTu(ActionEvent event) {
+    void ClickToOnVisibleAnhTuongTu(ActionEvent event) throws IOException, ClassNotFoundException {
         grpImageTuongTu.setVisible(true);
         grpImageChuyenAnh.setVisible(false);
         grpImageDinhDang.setVisible(false);
         grpImageNenAnh.setVisible(false);
         grpImageNhanDien.setVisible(false);
-
+        observablelistimg= FXCollections.observableArrayList();
+        HashMap<String,Object> input = new HashMap<>() ;
+        input.put("9",imgURL);
+        System.out.println(input);
+        SupportTool.getOutputClient().writeObject(input);
+        Object output = SupportTool.getInputClient().readObject();
+        List<String> list = (List<String>) output;
+        listviewTuongTu.setItems(SupportTool.convertListDTOtoObservableListSimilarImg(list));
+        listviewTuongTu.setCellFactory(e -> new TuongTuListViewCell());
     }
 
+
+
     @FXML
-    void ClickToOnVisibleNhanDien(ActionEvent event) {
+    void ClickToOnVisibleNhanDien(ActionEvent event) throws IOException, ClassNotFoundException {
         grpImageTuongTu.setVisible(false);
         grpImageChuyenAnh.setVisible(false);
         grpImageDinhDang.setVisible(false);
         grpImageNenAnh.setVisible(false);
         grpImageNhanDien.setVisible(true);
+        observablelistimg= FXCollections.observableArrayList();
+        HashMap<String,Object> input = new HashMap<>() ;
+        input.put("10",imgURL);
+        System.out.println(input);
+        SupportTool.getOutputClient().writeObject(input);
+        Object output = SupportTool.getInputClient().readObject();
+        HashMap<String, Double> list = (HashMap<String, Double>) output;
+        listviewVatThe.setItems(SupportTool.convertListDTOtoObservableListRecogImg(list));
+        listviewVatThe.setCellFactory(e -> new NhanDienListViewCell());
     }
 
     @FXML

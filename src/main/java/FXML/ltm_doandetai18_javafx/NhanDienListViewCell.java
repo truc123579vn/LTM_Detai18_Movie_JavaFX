@@ -7,8 +7,11 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.fxml.FXML;
-public class NhanDienListViewCell extends ListCell<String> {
+public class NhanDienListViewCell extends ListCell<HashMap<String,Double>> {
     @FXML
     private AnchorPane anchNhanDien;
 
@@ -20,11 +23,12 @@ public class NhanDienListViewCell extends ListCell<String> {
 
     private FXMLLoader mLLoader;
 
-    @Override
-    protected void updateItem(String imgUrl, boolean empty) {
-        super.updateItem(imgUrl, empty);
 
-        if (empty || imgUrl == null) {
+    @Override
+    protected void updateItem(HashMap<String, Double> recogimg, boolean empty) {
+        super.updateItem(recogimg, empty);
+
+        if (empty || recogimg == null) {
 
             setText(null);
             setGraphic(null);
@@ -42,6 +46,10 @@ public class NhanDienListViewCell extends ListCell<String> {
                 }
 
             }
+            for(Map.Entry entry : recogimg.entrySet()){
+                lblImageObject.setText(String.valueOf(entry.getKey()));
+                lblImagePercent.setText(String.valueOf(entry.getValue()));
+        }
 
 
             setText(null);
