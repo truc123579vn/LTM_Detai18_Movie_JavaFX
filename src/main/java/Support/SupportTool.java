@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.List;
 
 public class SupportTool {
@@ -76,6 +77,28 @@ public class SupportTool {
             //     System.out.println(dto.getImg());
         }
         return  review_dtos;
+    }
+
+    public static ObservableList<String> convertListDTOtoObservableListSimilarImg(List<String> list)
+    {
+        ObservableList<String> similarImgs = FXCollections.observableArrayList();
+        for (String similarImg: list
+        ) {
+            similarImgs.add(similarImg);
+            //     System.out.println(dto.getImg());
+        }
+        return similarImgs;
+    }
+
+    public static ObservableList<HashMap<String, Double>> convertListDTOtoObservableListRecogImg(HashMap<String, Double> Img)
+    {
+        ObservableList<HashMap<String, Double>> recogImgs = FXCollections.observableArrayList();
+        for (HashMap<String, Double> recogImg:recogImgs
+        ) {
+            recogImgs.add(recogImg);
+            //     System.out.println(dto.getImg());
+        }
+        return recogImgs;
     }
 
     public static void CreateWebviewBrowser(String url)
