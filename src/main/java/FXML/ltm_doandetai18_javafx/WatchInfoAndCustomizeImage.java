@@ -134,7 +134,7 @@ public class WatchInfoAndCustomizeImage implements Initializable {
 
    // private String imgURL=HomeController.imageUrl;
     private String imgURL="https://resmush.it/assets/images/jpg_example_original.jpg";
-    private List<String> infoCompress =new ArrayList<>();
+    private List<String> infoCompress;
     @FXML
     void Back(ActionEvent event) throws IOException {
             Start.setRoot("Home");
