@@ -1,16 +1,26 @@
 package FXML.ltm_doandetai18_javafx;
 
+import DTO.Review_DTO;
+import Support.SupportTool;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Group;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class WatchInfoAndCustomizeImage {
+public class WatchInfoAndCustomizeImage implements Initializable {
 
     @FXML
     private Button btnBack;
@@ -35,6 +45,9 @@ public class WatchInfoAndCustomizeImage {
 
     @FXML
     private Button btnImageVatThe;
+
+    @FXML
+    private Button btnCompress;
 
     @FXML
     private Group grpImageChuyenAnh;
@@ -98,6 +111,31 @@ public class WatchInfoAndCustomizeImage {
 
 
     @FXML
+    private TextField txtPercentCompress;
+
+
+    @FXML
+    private Hyperlink hyperBeforeImage;
+
+    @FXML
+    private Label lblAfterSize;
+
+    @FXML
+    private Label lblBeforSize;
+
+    @FXML
+    private Hyperlink HyperAfterImage;
+
+    @FXML
+    private ImageView imageviewAfterCompress;
+
+    @FXML
+    private ImageView imageviewBeforeCompress;
+
+   // private String imgURL=HomeController.imageUrl;
+    private String imgURL="https://resmush.it/assets/images/jpg_example_original.jpg";
+    private List<String> infoCompress =new ArrayList<>();
+    @FXML
     void Back(ActionEvent event) throws IOException {
             Start.setRoot("Home");
     }
@@ -140,7 +178,7 @@ public class WatchInfoAndCustomizeImage {
     }
 
     @FXML
-    void ClickToOnvisibleNenAnh(ActionEvent event) {
+    void ClickToOnvisibleNenAnh(ActionEvent event) throws IOException, ClassNotFoundException {
         grpImageTuongTu.setVisible(false);
         grpImageChuyenAnh.setVisible(false);
         grpImageDinhDang.setVisible(false);
@@ -181,5 +219,56 @@ public class WatchInfoAndCustomizeImage {
         if(rbtnFit.isSelected())
             text=rbtnFit.getText();
         System.out.println(text);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        txtPercentCompress.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    txtPercentCompress.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+    }
+
+    public void ClickToCompressImage(ActionEvent event) throws IOException, ClassNotFoundException {
+
+        String qlty= txtPercentCompress.getText();
+        //ghi
+        if(!qlty.isBlank()) {
+            HashMap<String, String> mapinfoCompress = new HashMap<>();
+            mapinfoCompress.put("imgURL", imgURL);
+            mapinfoCompress.put("qlty", qlty);
+            System.out.println(mapinfoCompress);
+            HashMap<String, HashMap<String, String>> input = new HashMap<>();
+
+            input.put("6", mapinfoCompress);
+            System.out.println(input);
+            SupportTool.getOutputClient().writeObject(input);
+
+            //doc
+            Object output = SupportTool.getInputClient().readObject();
+            List<String> infoCompress = (List<String>) output;
+            System.out.println(output);
+
+            lblAfterSize.setText(infoCompress.get(2));
+            lblBeforSize.setText(infoCompress.get(1));
+            HyperAfterImage.setText(infoCompress.get(0));
+            imageviewBeforeCompress.setImage(new Image(imgURL));
+            imageviewAfterCompress.setImage(new Image(infoCompress.get(0)));
+
+
+
+        }
+        else
+            Start.alertInf("Bạn chưa nhập thông tin");
+    }
+
+
+    public void ClickToSaveImage(ActionEvent event) {
+        SupportTool.CreateWebviewBrowser(HyperAfterImage.getText());
     }
 }
