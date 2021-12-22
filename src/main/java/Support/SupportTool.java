@@ -6,6 +6,14 @@ import DTO.MovieSearchResult_DTO;
 import DTO.Review_DTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -68,6 +76,37 @@ public class SupportTool {
             //     System.out.println(dto.getImg());
         }
         return  review_dtos;
+    }
+
+    public static void CreateWebviewBrowser(String url)
+    {
+        final WebView browser = new WebView();
+        final WebEngine webEngine = browser.getEngine();
+
+
+        // Tải một trang HTML từ url.
+        webEngine.load(url);
+        VBox root = new VBox();
+        root.setPadding(new Insets(5));
+        root.setSpacing(5);
+        root.getChildren().addAll(browser);
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Anh");
+        stage.setScene(scene);
+        stage.setWidth(800);
+        stage.setHeight(500);
+
+        stage.show();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>(){
+
+            @Override
+            public void handle(WindowEvent event) {
+                webEngine.load(null);
+            }
+        });
     }
 
 }
