@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -67,6 +68,7 @@ public class HomeController implements Initializable {
 
     public static Movie_DTO movie_dto;
 
+    public static String imageUrl;
     private Stage stage;
 
     private Parent root;
@@ -114,7 +116,10 @@ public class HomeController implements Initializable {
         else
         {
             observableListMovie = FXCollections.observableArrayList();
-            SupportTool.getOutputClient().writeObject("1-" + searchName);
+            HashMap<String,Object> input = new HashMap<>() ;
+            input.put("1",searchName);
+            System.out.println(input);
+            SupportTool.getOutputClient().writeObject(input);
             Object output = SupportTool.getInputClient().readObject();
 
             List<MovieSearchResult_DTO> list = (List<MovieSearchResult_DTO>) output;
@@ -138,7 +143,14 @@ public class HomeController implements Initializable {
             System.out.println("clicked on " + listViewMovies.getSelectionModel().getSelectedItem());
            String inputMovieTitle = listViewMovies.getSelectionModel().getSelectedItem().getID();
             //System.out.println(inputMovieTitle);
-            SupportTool.getOutputClient().writeObject("2-"+inputMovieTitle);
+
+            //ghi
+            HashMap<String,Object> input = new HashMap<>() ;
+            input.put("2",inputMovieTitle);
+            System.out.println(input);
+            SupportTool.getOutputClient().writeObject(input);
+
+            //doc
             Object output = SupportTool.getInputClient().readObject();
              movie_dto = (Movie_DTO) output;
             System.out.println(movie_dto.getID());
@@ -149,7 +161,7 @@ public class HomeController implements Initializable {
 
     }
 
-    public void ClickToUploadImage(ActionEvent event) {
+    public void ClickToUploadImage(ActionEvent event) throws IOException, ClassNotFoundException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         fileChooser.setInitialDirectory(new File("./src/main/resources/image"));
@@ -166,9 +178,19 @@ public class HomeController implements Initializable {
             imgUploadFile.setImage(image);
             btnNavigateImageControl.setVisible(true);
            // String imgDirectory=file.getAbsolutePath();
-            System.out.println(file.getAbsolutePath());
+            System.out.println(file.getAbsolutePath().toString());
             System.out.println(file.toURI().toString());
             System.out.println(file.getName());
+
+            //ghi
+            HashMap<String,Object> input = new HashMap<>() ;
+            input.put("5",file);
+            System.out.println(input);
+            SupportTool.getOutputClient().writeObject(input);
+
+            //doc
+             imageUrl= (String) SupportTool.getInputClient().readObject();
+            System.out.println(imageUrl);
         }
         else System.out.println("file is not invalid");
         // return directoryFile;

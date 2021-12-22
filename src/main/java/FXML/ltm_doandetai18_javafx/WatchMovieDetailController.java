@@ -31,6 +31,7 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -118,7 +119,13 @@ public class WatchMovieDetailController implements Initializable {
         grpMovie.setVisible(false);
         observableListReview = FXCollections.observableArrayList();
 
-        SupportTool.getOutputClient().writeObject("3-"+movie_dto.getID());
+        //ghi
+        HashMap<String,Object> input = new HashMap<>() ;
+        input.put("3",movie_dto.getID());
+        System.out.println(input);
+        SupportTool.getOutputClient().writeObject(input);
+
+        //doc
         Object output = SupportTool.getInputClient().readObject();
        List<Review_DTO> review_dtos = (List<Review_DTO>) output;
 
@@ -137,7 +144,13 @@ public class WatchMovieDetailController implements Initializable {
     }
 
     public void ClickToSeeTrailer(ActionEvent event) throws IOException, ClassNotFoundException {
-        SupportTool.getOutputClient().writeObject("4-"+movie_dto.getID());
+        //ghi
+        HashMap<String,Object> input = new HashMap<>() ;
+        input.put("4",movie_dto.getID());
+        System.out.println(input);
+
+        //doc
+        SupportTool.getOutputClient().writeObject(input);
         Object output = SupportTool.getInputClient().readObject();
 
         final WebView browser = new WebView();
@@ -155,7 +168,7 @@ public class WatchMovieDetailController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("JavaFX WebView (o7planning.org)");
+        stage.setTitle("trailer");
         stage.setScene(scene);
         stage.setWidth(700);
         stage.setHeight(350);
