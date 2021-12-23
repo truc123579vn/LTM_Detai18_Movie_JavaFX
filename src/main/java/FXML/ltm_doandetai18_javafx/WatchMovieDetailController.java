@@ -153,34 +153,42 @@ public class WatchMovieDetailController implements Initializable {
         SupportTool.getOutputClient().writeObject(input);
         Object output = SupportTool.getInputClient().readObject();
 
-        final WebView browser = new WebView();
-        final WebEngine webEngine = browser.getEngine();
+        System.out.println(output);
+        if (output.equals("Phim không có Trailer"))
+        {
+            Start.alertInf("Phim không có Trailer ");
+        }
+        else {
+            String url = (String) output;
 
-        String url = (String)output;
+            final WebView browser = new WebView();
+            final WebEngine webEngine = browser.getEngine();
 
-        // Tải một trang HTML từ url.
-        webEngine.load(url);
-        VBox root = new VBox();
-        root.setPadding(new Insets(5));
-        root.setSpacing(5);
-        root.getChildren().addAll(browser);
 
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("trailer");
-        stage.setScene(scene);
-        stage.setWidth(700);
-        stage.setHeight(350);
+            // Tải một trang HTML từ url.
+            webEngine.load(url);
+            VBox root = new VBox();
+            root.setPadding(new Insets(5));
+            root.setSpacing(5);
+            root.getChildren().addAll(browser);
 
-        stage.show();
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>(){
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("trailer");
+            stage.setScene(scene);
+            stage.setWidth(700);
+            stage.setHeight(350);
 
-            @Override
-            public void handle(WindowEvent event) {
-                webEngine.load(null);
-            }
-        });
+            stage.show();
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 
+                @Override
+                public void handle(WindowEvent event) {
+                    webEngine.load(null);
+                }
+            });
+
+        }}
     }
-}
+

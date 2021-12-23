@@ -67,7 +67,7 @@ public class HomeController implements Initializable {
     private ObservableList<MovieSearchResult_DTO> observableListMovie;
 
     public static Movie_DTO movie_dto;
-
+    public static File file;
     public static String imageUrl;
     private Stage stage;
 
@@ -166,22 +166,19 @@ public class HomeController implements Initializable {
         fileChooser.setTitle("Open Resource File");
         fileChooser.setInitialDirectory(new File("./src/main/resources/image"));
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All Images", "*.*"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
                 new FileChooser.ExtensionFilter("PNG", "*.png")
         );
-        File file = fileChooser.showOpenDialog(stage);
+       file = fileChooser.showOpenDialog(stage);
 
         if (file !=null)
         {
-            Image image = new Image(file.toURI().toString(),361,175,false,true);
-            imgUploadFile.setImage(image);
-            btnNavigateImageControl.setVisible(true);
            // String imgDirectory=file.getAbsolutePath();
             System.out.println(file.getAbsolutePath().toString());
             System.out.println(file.toURI().toString());
             System.out.println(file.getName());
-
+            System.out.println(file);
+            System.out.println(SupportTool.getImgExtension(file));
             //ghi
             HashMap<String,Object> input = new HashMap<>() ;
             input.put("5",file);
@@ -191,6 +188,14 @@ public class HomeController implements Initializable {
             //doc
              imageUrl= (String) SupportTool.getInputClient().readObject();
             System.out.println(imageUrl);
+            if(!imageUrl.isBlank())
+            {
+                Image image = new Image(imageUrl,361,175,false,true);
+                imgUploadFile.setImage(image);
+                btnNavigateImageControl.setVisible(true);
+            }
+            else
+                System.out.println("Lỗi không upload được ảnh, thử lại lần nữa");
         }
         else System.out.println("file is not invalid");
         // return directoryFile;
