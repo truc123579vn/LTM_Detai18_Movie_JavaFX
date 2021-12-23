@@ -154,11 +154,11 @@ public class WatchMovieDetailController implements Initializable {
         Object output = SupportTool.getInputClient().readObject();
 
         System.out.println(output);
-//        if (output.equals("Phim không có Trailer"))
-//        {
-//            Start.alertInf("Phim không có Trailer ");
-//        }
-//        else {
+        if (output.equals("Phim không có Trailer"))
+        {
+            Start.alertInf("Phim không có Trailer ");
+        }
+        else {
         String url = (String) output;
 
         final WebView browser = new WebView();
@@ -189,6 +189,6 @@ public class WatchMovieDetailController implements Initializable {
             }
         });
     }
-//        }}
-    }
+        }}
+    
 
