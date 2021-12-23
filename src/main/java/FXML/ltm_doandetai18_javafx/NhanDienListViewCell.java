@@ -1,5 +1,6 @@
 package FXML.ltm_doandetai18_javafx;
 
+import DTO.VatThe_DTO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -8,10 +9,11 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javafx.fxml.FXML;
-public class NhanDienListViewCell extends ListCell<HashMap<String,Double>> {
+public class NhanDienListViewCell extends ListCell<VatThe_DTO> {
     @FXML
     private AnchorPane anchNhanDien;
 
@@ -25,7 +27,7 @@ public class NhanDienListViewCell extends ListCell<HashMap<String,Double>> {
 
 
     @Override
-    protected void updateItem(HashMap<String, Double> recogimg, boolean empty) {
+    protected void updateItem(VatThe_DTO recogimg, boolean empty) {
         super.updateItem(recogimg, empty);
 
         if (empty || recogimg == null) {
@@ -46,11 +48,12 @@ public class NhanDienListViewCell extends ListCell<HashMap<String,Double>> {
                 }
 
             }
-            for(Map.Entry entry : recogimg.entrySet()){
-                lblImageObject.setText(String.valueOf(entry.getKey()));
-                lblImagePercent.setText(String.valueOf(entry.getValue()));
-        }
-
+//            for(Map.Entry entry : recogimg.entrySet()){
+//                lblImageObject.setText(String.valueOf(entry.getKey()));
+//                lblImagePercent.setText(String.valueOf(entry.getValue()));
+//        }
+                lblImageObject.setText(String.valueOf(recogimg.getObject()));
+                lblImagePercent.setText(String.valueOf(recogimg.getPercentObject()));
 
             setText(null);
             setGraphic(anchNhanDien);
