@@ -58,7 +58,7 @@
                         </Label>
                         <Label fx:id="lblAfterSize" layoutX="341.0" layoutY="254.0" prefHeight="17.0" prefWidth="72.0" text="Label" />
                         <Label layoutX="248.0" layoutY="254.0" text="Kích thước:" wrapText="true" />
-                        <Hyperlink fx:id="HyperAfterCompressImage" layoutX="248.0" layoutY="430.0" onAction="#ClickToSaveCompressImage" prefHeight="23.0" prefWidth="130.0" text="Xem ảnh" />
+                        <Hyperlink fx:id="HyperAfterCompressImage" layoutX="248.0" layoutY="430.0" onAction="#ClickToSaveCompressImage" prefHeight="23.0" prefWidth="130.0" text="Lưu ảnh" />
                         <Button fx:id="btnCompress" layoutX="130.0" layoutY="113.0" mnemonicParsing="false" onAction="#ClickToCompressImage" prefHeight="25.0" prefWidth="182.0" text="Nén ảnh" />
                         <Label layoutX="34.0" layoutY="68.0" prefHeight="17.0" prefWidth="130.0" text="Tỉ lệ giữ lại sau khi nén: " />
                         <TextField fx:id="txtPercentCompress" layoutX="187.0" layoutY="64.0" promptText="90" />
@@ -121,7 +121,7 @@
                         <Label fx:id="lblAfterConverImageType" layoutX="362.0" layoutY="294.0" prefHeight="17.0" prefWidth="72.0" />
                         <ImageView fx:id="imageviewAfterConvert" fitHeight="112.0" fitWidth="149.0" layoutX="255.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="imageviewBeforeConvert" fitHeight="112.0" fitWidth="149.0" layoutX="31.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" />
-                        <Hyperlink fx:id="HyperAfterConvertType" layoutX="255.0" layoutY="454.0" onAction="#ClickToSaveConvertTypeImage" prefHeight="23.0" prefWidth="130.0" text="Xem ảnh" />
+                        <Hyperlink fx:id="HyperAfterConvertType" layoutX="255.0" layoutY="454.0" onAction="#ClickToSaveConvertTypeImage" prefHeight="23.0" prefWidth="130.0" text="Lưu ảnh" />
                      </children>
                   </AnchorPane>
                </children>
@@ -141,7 +141,7 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Hyperlink fx:id="HyperAfterEditImage" layoutX="290.0" layoutY="446.0" onAction="#ClickToSaveEditImage" prefHeight="23.0" prefWidth="128.0" text="Xem ảnh" />
+                        <Hyperlink fx:id="HyperAfterEditImage" layoutX="290.0" layoutY="446.0" onAction="#ClickToSaveEditImage" prefHeight="23.0" prefWidth="128.0" text="Lưu ảnh" />
                         <Button fx:id="btnChangeImage" layoutX="160.0" layoutY="180.0" mnemonicParsing="false" onAction="#ClickToChangeImage" prefHeight="25.0" prefWidth="130.0" text="Chỉnh ảnh" />
                         <RadioButton fx:id="rbtnCrop" layoutX="38.0" layoutY="65.0" mnemonicParsing="false" selected="true" text="crop">
                            <toggleGroup>

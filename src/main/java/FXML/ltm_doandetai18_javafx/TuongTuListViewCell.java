@@ -53,7 +53,7 @@ public class TuongTuListViewCell  extends ListCell<String> {
             btnSaveSimilarImage.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    SupportTool.CreateWebviewBrowser(imgUrl,file,"similarIMG");
+                    SupportTool.SaveFile(imgUrl,file,"similarIMG");
                 }
             });
 

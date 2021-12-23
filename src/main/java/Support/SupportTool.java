@@ -197,4 +197,36 @@ public class SupportTool {
 
     }
 
+    public static void SaveFile(String url,File file, String typeFileName)
+    {
+        HashMap<String, String> mapinfoSave = new HashMap<>();
+        mapinfoSave.put("imgURL", url);
+        mapinfoSave.put("typeFileName", typeFileName);
+        mapinfoSave.put("pathFile", file.getAbsolutePath());
+
+
+        System.out.println(mapinfoSave);
+        HashMap<String, HashMap<String, String>> input = new HashMap<>();
+        input.put("11", mapinfoSave);
+        System.out.println(input);
+
+        try {
+            SupportTool.getOutputClient().writeObject(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //doc
+        Object output = null;
+        try {
+            output = SupportTool.getInputClient().readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        String Message = "";
+        Message = (String) output;
+        System.out.println(output);
+    }
 }
