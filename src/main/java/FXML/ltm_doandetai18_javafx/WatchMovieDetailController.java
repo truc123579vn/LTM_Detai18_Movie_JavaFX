@@ -145,8 +145,8 @@ public class WatchMovieDetailController implements Initializable {
 
     public void ClickToSeeTrailer(ActionEvent event) throws IOException, ClassNotFoundException {
         //ghi
-        HashMap<String,Object> input = new HashMap<>() ;
-        input.put("4",movie_dto.getID());
+        HashMap<String, Object> input = new HashMap<>();
+        input.put("4", movie_dto.getID());
         System.out.println(input);
 
         //doc
@@ -154,41 +154,41 @@ public class WatchMovieDetailController implements Initializable {
         Object output = SupportTool.getInputClient().readObject();
 
         System.out.println(output);
-        if (output.equals("Phim không có Trailer"))
-        {
-            Start.alertInf("Phim không có Trailer ");
-        }
-        else {
-            String url = (String) output;
+//        if (output.equals("Phim không có Trailer"))
+//        {
+//            Start.alertInf("Phim không có Trailer ");
+//        }
+//        else {
+        String url = (String) output;
 
-            final WebView browser = new WebView();
-            final WebEngine webEngine = browser.getEngine();
+        final WebView browser = new WebView();
+        final WebEngine webEngine = browser.getEngine();
 
 
-            // Tải một trang HTML từ url.
-            webEngine.load(url);
-            VBox root = new VBox();
-            root.setPadding(new Insets(5));
-            root.setSpacing(5);
-            root.getChildren().addAll(browser);
+        // Tải một trang HTML từ url.
+        webEngine.load(url);
+        VBox root = new VBox();
+        root.setPadding(new Insets(5));
+        root.setSpacing(5);
+        root.getChildren().addAll(browser);
 
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("trailer");
-            stage.setScene(scene);
-            stage.setWidth(700);
-            stage.setHeight(350);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("trailer");
+        stage.setScene(scene);
+        stage.setWidth(700);
+        stage.setHeight(350);
 
-            stage.show();
-            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+        stage.show();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 
-                @Override
-                public void handle(WindowEvent event) {
-                    webEngine.load(null);
-                }
-            });
-
-        }}
+            @Override
+            public void handle(WindowEvent event) {
+                webEngine.load(null);
+            }
+        });
+    }
+//        }}
     }
 
