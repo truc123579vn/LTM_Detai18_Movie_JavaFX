@@ -13,7 +13,7 @@ import java.net.Socket;
 
 public class Start extends Application {
     public static Scene scene;
-    public static int destPort = 1234;
+    public static int destPort = 5000;
     public static String hostname = "localhost";
     public static Socket socket;
     public Start() {
