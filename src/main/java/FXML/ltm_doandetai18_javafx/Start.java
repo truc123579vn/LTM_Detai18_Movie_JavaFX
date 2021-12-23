@@ -47,7 +47,7 @@ public class Start extends Application {
 
     public static void main(String[] args) throws IOException {
 
-        socket=new Socket("localhost",1234);
+        socket=new Socket("localhost",5000);
         SupportTool.InitializeOutputClient(socket);
         SupportTool.InitializeInputClient(socket);
 
