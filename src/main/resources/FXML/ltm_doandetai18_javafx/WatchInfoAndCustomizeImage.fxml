@@ -161,6 +161,8 @@
                         <Label layoutX="240.0" layoutY="119.0" text="Height" />
                         <TextField fx:id="txtHeightImage" layoutX="290.0" layoutY="115.0" prefHeight="25.0" prefWidth="101.0" promptText="Chiều dài ...." />
                         <CheckBox fx:id="checkboxGrayScale" layoutX="325.0" layoutY="27.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="83.0" text="grayscale" />
+                        <ImageView fx:id="imageviewAfterEdt" fitHeight="112.0" fitWidth="149.0" layoutX="246.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imageviewBeforeEdit" fitHeight="112.0" fitWidth="149.0" layoutX="36.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true" />
                         <Label layoutX="251.0" layoutY="270.0" maxWidth="228.0" prefHeight="25.0" prefWidth="169.0" text="Sau khi đổi" wrapText="true">
                            <font>
                               <Font name="System Bold" size="16.0" />
@@ -208,8 +210,6 @@
                   </AnchorPane>
                </children>
             </Group>
-            <ImageView fx:id="imageviewAfterEdt" fitHeight="112.0" fitWidth="149.0" layoutX="263.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageviewBeforeEdit" fitHeight="112.0" fitWidth="149.0" layoutX="39.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
       <Button fx:id="btnImageChuyenAnh" layoutX="20.0" layoutY="254.0" mnemonicParsing="false" onAction="#ClickToOnvisibleChuyenAnh" prefHeight="68.0" prefWidth="100.0" stylesheets="@../../CSS/movie.css" text="Chuyển ảnh grayscale ,..." textAlignment="CENTER" wrapText="true">

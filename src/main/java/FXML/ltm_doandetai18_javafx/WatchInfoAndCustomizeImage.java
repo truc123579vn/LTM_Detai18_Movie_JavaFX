@@ -448,7 +448,7 @@ public class WatchInfoAndCustomizeImage implements Initializable {
     }
 
     public void ClickToSaveConvertTypeImage(ActionEvent event) {
-        SupportTool.CreateWebviewBrowser(afterCompressImage,file,"convertIMG");
+        SupportTool.CreateWebviewBrowser(afterConverTypeImage,file,"convertIMG");
     }
 
     public void ClickToSaveEditImage(ActionEvent event) {
